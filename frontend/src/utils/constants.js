@@ -1,4 +1,4 @@
-export const URL = "https://api.kupipodari.skuhtalev.nomoredomainsmonster.ru";
+export const URL = "http://localhost:4000/";//"https://api.kupipodari.skuhtalev.nomoredomainsmonster.ru";
 
 export const MINIMUM_PASSWORD_LENGTH = 3;
 export const MINIMUM_USERNAME_LENGTH = 3;

@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  database:
+    container_name: database-kdp
+    image: postgres:14-alpine
+    env_file: ./backend/.env
+    restart: on-failure
+    volumes:
+      - postgres_data:/data/postgres
+    networks:
+      - db_network
+
+  frontend:
+    container_name: frontend-kdp
+    build: ./frontend
+    image: frontend-image
+    restart:
+      on-failure
+    ports:
+      - "8081:80"
+    depends_on:
+      - database
+    networks:
+       - frontend_network
+
+  backend:
+    container_name: backend-kdp
+    build: ./backend
+    image: backend-image
+    env_file: ./backend/.env
+    restart:
+      on-failure
+    ports:
+      - "4000:3000"
+    depends_on:
+      - database
+    networks:
+      - db_network
+      - frontend_network
+
+volumes:
+  postgres_data:
+
+networks:
+  db_network:
+  frontend_network:
