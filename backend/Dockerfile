@@ -12,5 +12,4 @@ RUN npm install --omit=dev && npm i pm2 -g
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/ecosystem.config.js .
 COPY ./.env ./
-EXPOSE 4000
 CMD ["pm2-runtime", "start", "ecosystem.config.js"]
